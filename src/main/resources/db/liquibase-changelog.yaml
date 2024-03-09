@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01_create_table_address
+      author: piotr
+      changes:
+        - sqlFile:
+            path: scripts/01_create_table_address.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: 02_create_table_restaurant
+      author: piotr
+      changes:
+        - sqlFile:
+            path: scripts/02_create_table_restaurant.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: 03_create_table_restaurant-table
+      author: piotr
+      changes:
+        - sqlFile:
+            path: scripts/03_create_table_restaurant-table.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

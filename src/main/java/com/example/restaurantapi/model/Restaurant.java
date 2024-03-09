@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.LocalTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,15 +27,31 @@ public class Restaurant {
     @Column(name = "CLOSING_HOURS", nullable = false)
     private LocalTime closingHours;
 
-    @ElementCollection
+
+
+
+    @ElementCollection(targetClass = FoodType.class)
     @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
     @Column(name = "FOOD_TYPE")
-    private Set<String> foodTypes = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private Set<FoodType> foodTypes = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(name = "RESTAURANT_TABLES", joinColumns = @JoinColumn(name = "restaurant_id"))
-    @Column(name = "TABLES_NUMBERS")
-    private Set<Integer> tablesNumbers = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RestaurantTable> tables;
+
+
 
 
 }
+// @ElementCollection
+// @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
+// @Column(name = "FOOD_TYPE")
+// private Set<String> foodTypes = new HashSet<>();
+
+//@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//@JoinTable(name = "RESTAURANT_TABLES",
+//        joinColumns = @JoinColumn(name = "restaurant_id"),
+//        inverseJoinColumns = @JoinColumn(name = "table_id"))
+//private Set<RestaurantTable> tablesNumbers = new HashSet<>();
