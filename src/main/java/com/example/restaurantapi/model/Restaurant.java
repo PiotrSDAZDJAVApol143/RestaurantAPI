@@ -28,8 +28,13 @@ public class Restaurant {
 
     @ElementCollection
     @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
-    @Column(name = "food_type")
+    @Column(name = "FOOD_TYPE")
     private Set<String> foodTypes = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "RESTAURANT_TABLES", joinColumns = @JoinColumn(name = "restaurant_id"))
+    @Column(name = "TABLES_NUMBERS")
+    private Set<Integer> tablesNumbers = new HashSet<>();
 
 
 }

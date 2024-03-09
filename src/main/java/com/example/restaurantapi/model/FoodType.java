@@ -23,7 +23,7 @@ public enum FoodType {
     SPANISH("Spanish"),
     TURKISH("Turkish"),
     KOREAN("Korean"),
-    OTHER("Other");
+    FASTFOOD("FastFood");
 
     private final String displayName;
 
