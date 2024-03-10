@@ -27,22 +27,14 @@ public class Restaurant {
     @Column(name = "CLOSING_HOURS", nullable = false)
     private LocalTime closingHours;
 
-
-
-
     @ElementCollection(targetClass = FoodType.class)
     @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
     @Column(name = "FOOD_TYPE")
     @Enumerated(EnumType.STRING)
     private Set<FoodType> foodTypes = new HashSet<>();
 
-
-
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RestaurantTable> tables;
-
-
-
 
 }
 // @ElementCollection

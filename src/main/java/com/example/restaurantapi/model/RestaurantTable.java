@@ -13,11 +13,13 @@ public class RestaurantTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)  //powiązanie usuwania tabeli
     private Restaurant restaurant;
-    @Column(name = "NUMBER_OF_TABLES",nullable = false)
-    private Integer numberOfTables;
+    @Column(name = "TABLE_NUMBER",nullable = false)
+    private Integer tableNumber;
+    @Column(name = "CAPACITY_OF_TABLE",nullable = false)
+    private Integer capacityOfTable;
 
 }
