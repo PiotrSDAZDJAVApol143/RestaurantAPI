@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,13 +23,16 @@ public class Restaurant {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
     @Column(name = "OPENING_HOURS", nullable = false)
     private LocalTime openingHours;
+
     @Column(name = "CLOSING_HOURS", nullable = false)
     private LocalTime closingHours;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_id")
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImageEntity> imagesFromRestaurant;
+
 
     @ElementCollection(targetClass = FoodType.class)
     @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
@@ -37,16 +41,6 @@ public class Restaurant {
     private Set<FoodType> foodTypes = new HashSet<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RestaurantTable> tables;
+    private List<RestaurantTable> tables = new ArrayList<>();
 
 }
-// @ElementCollection
-// @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
-// @Column(name = "FOOD_TYPE")
-// private Set<String> foodTypes = new HashSet<>();
-
-//@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//@JoinTable(name = "RESTAURANT_TABLES",
-//        joinColumns = @JoinColumn(name = "restaurant_id"),
-//        inverseJoinColumns = @JoinColumn(name = "table_id"))
-//private Set<RestaurantTable> tablesNumbers = new HashSet<>();
