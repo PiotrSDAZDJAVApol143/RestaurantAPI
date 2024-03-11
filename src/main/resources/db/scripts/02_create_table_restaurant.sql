@@ -8,17 +8,12 @@ CREATE TABLE IF NOT EXISTS restaurant
     FOREIGN KEY (address_id) REFERENCES address (id)
     );
 
---ALTER TABLE RESTAURANT
---    ADD CONSTRAINT fk_address
---        FOREIGN KEY (address_id) REFERENCES address (id);
-
 CREATE TABLE IF NOT EXISTS `RESTAURANT_FOOD_TYPE` (
     restaurant_id           BIGINT NOT NULL,
-    FOOD_TYPE               VARCHAR(255) NOT NULL
+    FOOD_TYPE ENUM('italian','chinese','mexican','japanese','indian','american','french','thai','polish','greek','spanish','turkish','korean','fastfood') NOT NULL,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (id)
     );
 
--- CREATE TABLE IF NOT EXISTS RESTAURANT_TABLE (
---     restaurant_id BIGINT    NOT NULL,
---     table_id                BIGINT NOT NULL
---);
+
+
 

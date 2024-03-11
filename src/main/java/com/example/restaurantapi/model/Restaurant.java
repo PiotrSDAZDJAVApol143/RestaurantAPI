@@ -26,6 +26,9 @@ public class Restaurant {
     private LocalTime openingHours;
     @Column(name = "CLOSING_HOURS", nullable = false)
     private LocalTime closingHours;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
+    private List<ImageEntity> imagesFromRestaurant;
 
     @ElementCollection(targetClass = FoodType.class)
     @CollectionTable(name = "RESTAURANT_FOOD_TYPE", joinColumns = @JoinColumn(name = "restaurant_id"))
