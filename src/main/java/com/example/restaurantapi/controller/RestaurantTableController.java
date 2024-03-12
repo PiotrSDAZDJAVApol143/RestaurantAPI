@@ -1,20 +1,16 @@
 package com.example.restaurantapi.controller;
 
-import com.example.restaurantapi.dto.RestaurantReqDto;
-import com.example.restaurantapi.dto.RestaurantTableConfigurationDTO;
 import com.example.restaurantapi.model.Restaurant;
 import com.example.restaurantapi.model.RestaurantTable;
 import com.example.restaurantapi.service.RestaurantService;
 import com.example.restaurantapi.service.RestaurantTableService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/table")

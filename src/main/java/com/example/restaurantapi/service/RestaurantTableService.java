@@ -1,7 +1,5 @@
 package com.example.restaurantapi.service;
 
-import com.example.restaurantapi.dto.RestaurantTableConfigurationDTO;
-import com.example.restaurantapi.model.Restaurant;
 import com.example.restaurantapi.model.RestaurantTable;
 import com.example.restaurantapi.repository.RestaurantRepository;
 import com.example.restaurantapi.repository.RestaurantTableRepository;
@@ -20,7 +18,7 @@ public class RestaurantTableService {
 
     public RestaurantTable updateCapacityOfTableById(Long id, Integer capacityOfTable) {
         Optional<RestaurantTable> optionalRestaurantTable = restaurantTableRepository.findById(id);
-        if (!optionalRestaurantTable.isPresent()) {
+        if (optionalRestaurantTable.isEmpty()) {
             throw new EntityNotFoundException("Table with" + id +" not found");
         }
 
