@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS restaurant
 
 CREATE TABLE IF NOT EXISTS `RESTAURANT_FOOD_TYPE` (
     restaurant_id           BIGINT NOT NULL,
-    FOOD_TYPE ENUM('italian','chinese','mexican','japanese','indian','american','french','thai','polish','greek','spanish','turkish','korean','fastfood') NOT NULL,
+    FOOD_TYPE ENUM('Italian','Chinese','Mexican','Japanese','Indian','American','French','Thai','Polish','Greek','Spanish','Turkish','Korean','Fastfood') NOT NULL,
     FOREIGN KEY (restaurant_id) REFERENCES restaurant (id)
     );
 

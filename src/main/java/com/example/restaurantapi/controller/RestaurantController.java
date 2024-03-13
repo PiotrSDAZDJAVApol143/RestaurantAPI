@@ -1,4 +1,6 @@
 package com.example.restaurantapi.controller;
+
+import com.example.restaurantapi.dto.RestaurantReqDto;
 import com.example.restaurantapi.model.Restaurant;
 import com.example.restaurantapi.service.RestaurantService;
 import jakarta.validation.Valid;
@@ -17,35 +19,38 @@ public class RestaurantController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id){
+    public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
         Restaurant restaurant = restaurantService.findById(id);
         return ResponseEntity.ok(restaurant);
     }
 
+
+
     @PostMapping("/add")
-    public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody Restaurant request){
-        Restaurant restaurant = restaurantService.findOrCreateRestaurant(request.getRestaurantName());
+    public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody RestaurantReqDto requestDto) {
+        Restaurant restaurant = restaurantService.buildRestaurant(requestDto);
+        restaurant = restaurantService.findOrCreateRestaurant(restaurant);
         return new ResponseEntity<>(restaurant, HttpStatus.CREATED);
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @Valid @RequestBody Restaurant request){
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @Valid @RequestBody Restaurant request) {
         Restaurant updateRestaurant = restaurantService.updateRestaurant(id, request);
         return ResponseEntity.ok(updateRestaurant);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id){
+    public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.noContent().build();
     }
 
 
-
-
-
-
-
-
 }
+
+//  @PostMapping("/add")
+//  public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody Restaurant request){
+//      Restaurant restaurant = restaurantService.findOrCreateRestaurant(request.getRestaurantName());
+//      return new ResponseEntity<>(restaurant, HttpStatus.CREATED);
+//  }

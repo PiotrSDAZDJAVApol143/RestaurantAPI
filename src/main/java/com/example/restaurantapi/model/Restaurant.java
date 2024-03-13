@@ -1,7 +1,7 @@
 package com.example.restaurantapi.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,7 +10,11 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = {"imagesFromRestaurant", "tables"})
+
 @Table(name = "RESTAURANT")
 public class Restaurant {
     @Id
@@ -30,7 +34,7 @@ public class Restaurant {
     @Column(name = "CLOSING_HOURS", nullable = false)
     private LocalTime closingHours;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ImageEntity> imagesFromRestaurant;
 
 
