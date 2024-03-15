@@ -1,5 +1,6 @@
 package com.example.restaurantapi.service;
 
+import com.example.restaurantapi.model.Restaurant;
 import com.example.restaurantapi.model.RestaurantTable;
 import com.example.restaurantapi.repository.RestaurantRepository;
 import com.example.restaurantapi.repository.RestaurantTableRepository;
@@ -16,26 +17,28 @@ public class RestaurantTableService {
     private final RestaurantTableRepository restaurantTableRepository;
     private final RestaurantService restaurantService;
 
-    public RestaurantTable updateCapacityOfTableById(Long id, Integer capacityOfTable) {
-        Optional<RestaurantTable> optionalRestaurantTable = restaurantTableRepository.findById(id);
-        if (optionalRestaurantTable.isEmpty()) {
-            throw new EntityNotFoundException("Table with" + id +" not found");
-        }
+    public RestaurantTable saveRestaurantTable(Long restaurantId, RestaurantTable restaurantTable) {
+        Restaurant restaurant = restaurantService.findRestaurantTableById(restaurantId);
+        restaurantTable.setRestaurant(restaurant);
+        return restaurantTableRepository.save(restaurantTable);
+    }
 
-        RestaurantTable restaurantTable = optionalRestaurantTable.get();
+    public RestaurantTable updateCapacityOfTableById(Long restaurantId, Long tableId, Integer capacityOfTable) {
+        RestaurantTable restaurantTable = restaurantTableRepository.findById(tableId)
+                .orElseThrow(() -> new EntityNotFoundException("Table with id " + tableId + " not found"));
+        if (!restaurantTable.getRestaurant().getId().equals(restaurantId)) {
+            throw new IllegalArgumentException("Table with id " + tableId + " does not belong to restaurant with id " + restaurantId);
+        }
         restaurantTable.setCapacityOfTable(capacityOfTable);
         return restaurantTableRepository.save(restaurantTable);
     }
 
-    public void deleteRestaurantTable(Long id) {
-        if(!restaurantTableRepository.existsById(id)){
-            throw new EntityNotFoundException("Table with" + id +" not found");
+    public void deleteRestaurantTable(Long restaurantId, Long tableId) {
+        RestaurantTable restaurantTable = restaurantTableRepository.findById(tableId)
+                .orElseThrow(() -> new EntityNotFoundException("Table with id " + tableId + " not found"));
+        if (!restaurantTable.getRestaurant().getId().equals(restaurantId)) {
+            throw new IllegalArgumentException("Table with id " + tableId + " does not belong to restaurant with id " + restaurantId);
         }
-        restaurantTableRepository.deleteById(id);
-    }
-
-
-    public RestaurantTable saveRestaurantTable(RestaurantTable restaurantTable) {
-        return restaurantTableRepository.save(restaurantTable);
+        restaurantTableRepository.deleteById(tableId);
     }
 }

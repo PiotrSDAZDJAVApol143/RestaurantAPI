@@ -2,19 +2,25 @@ package com.example.restaurantapi.service;
 
 import com.example.restaurantapi.dto.AddressDto;
 import com.example.restaurantapi.dto.RestaurantReqDto;
+import com.example.restaurantapi.dto.RestaurantWriteDto;
 import com.example.restaurantapi.model.Address;
 import com.example.restaurantapi.model.Restaurant;
+import com.example.restaurantapi.model.RestaurantTable;
 import com.example.restaurantapi.repository.RestaurantRepository;
 import com.example.restaurantapi.repository.RestaurantTableRepository;
+import com.example.restaurantapi.utils.mapper.RestaurantMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final RestaurantTableRepository restaurantTableRepository;
+    private final RestaurantMapper restaurantMapper;
 
 
     public Restaurant createRestaurant(String restaurantName) {
@@ -33,10 +39,17 @@ public class RestaurantService {
         restaurant.setClosingHours(requestDto.getClosingHours());
         restaurant.setImagesFromRestaurant(requestDto.getImagesFromRestaurant());
         restaurant.setFoodTypes(requestDto.getFoodTypes());
-        restaurant.setTables(requestDto.getTables());
-
+        restaurantRepository.save(restaurant);
+        List<RestaurantTable> tables = requestDto.getTables();
+        if (tables != null && !tables.isEmpty()) {
+            for (RestaurantTable table : tables) {
+                table.setRestaurant(restaurant);
+            }
+            restaurantTableRepository.saveAll(tables);
+        }
         return restaurant;
     }
+
     private Address buildAddress(Address address){
         Address addressBuild = new Address();
         addressBuild.setName(address.getName());
@@ -67,7 +80,12 @@ public class RestaurantService {
 
 
 
-    public Restaurant findById(Long id) {
+    public RestaurantWriteDto findById(Long id) {
+        return restaurantRepository.findById(id)
+                .map(restaurantMapper::toDto)
+                .orElseThrow(() -> new EntityNotFoundException("Restaurant not found with id: " + id));
+    }
+    public Restaurant findRestaurantTableById(Long id){
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Restaurant not found with id: " + id));
     }
@@ -92,3 +110,14 @@ public class RestaurantService {
         restaurantRepository.deleteById(id);
     }
 }
+/* List<RestaurantTable> tables = requestDto.getTables();
+        if (tables != null && !tables.isEmpty()) {
+            for (int i = 0; i < tables.size(); i++) {
+                RestaurantTable table = tables.get(i);
+                table.setTableNumber(i + 1);
+                table.setRestaurant(restaurant);
+            }
+            restaurant.setTables(tables);
+        }
+
+ */

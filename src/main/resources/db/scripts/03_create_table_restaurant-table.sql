@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS restaurant_table
 (
     id                      BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    restaurant_id           BIGINT,
+    restaurant_id           BIGINT NOT NULL,
     TABLE_NUMBER            INT NOT NULL,
     CAPACITY_OF_TABLE       INT NOT NULL,
     KEY fk_restaurant_table (restaurant_id),

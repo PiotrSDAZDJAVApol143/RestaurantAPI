@@ -1,6 +1,7 @@
 package com.example.restaurantapi.controller;
 
 import com.example.restaurantapi.dto.RestaurantReqDto;
+import com.example.restaurantapi.dto.RestaurantWriteDto;
 import com.example.restaurantapi.model.Restaurant;
 import com.example.restaurantapi.service.RestaurantService;
 import jakarta.validation.Valid;
@@ -19,8 +20,8 @@ public class RestaurantController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
-        Restaurant restaurant = restaurantService.findById(id);
+    public ResponseEntity<RestaurantWriteDto> getRestaurant(@PathVariable Long id) {
+        RestaurantWriteDto restaurant = restaurantService.findById(id);
         return ResponseEntity.ok(restaurant);
     }
 

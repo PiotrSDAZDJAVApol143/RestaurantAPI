@@ -3,15 +3,14 @@ package com.example.restaurantapi.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-public class RestaurantTableConfigurationDTO {
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class RestaurantTableDTO {
 
-    @NotBlank(message = "Restaurant Name is required")
-    private String restaurantName;
     @NotNull(message = "Number of Tables in Restaurant is required")
     @Min(value = 1, message = "Table Number in Restaurant must be greater than 0")
     private Integer tableNumber;

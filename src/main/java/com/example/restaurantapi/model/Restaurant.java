@@ -44,7 +44,7 @@ public class Restaurant {
     @Enumerated(EnumType.STRING)
     private Set<FoodType> foodTypes = new HashSet<>();
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private List<RestaurantTable> tables = new ArrayList<>();
 
 }

@@ -8,24 +8,18 @@ import lombok.Getter;
 @Getter
 @Table(name = "FOOD_TYPE")
 public enum FoodType {
-    ITALIAN("Italian"),
-    CHINESE("Chinese"),
-    MEXICAN("Mexican"),
-    JAPANESE("Japanese"),
-    INDIAN("Indian"),
-    AMERICAN("American"),
-    FRENCH("French"),
-    THAI("THAI"),
-    POLISH("Polish"),
-    GREEK("Greek"),
-    SPANISH("Spanish"),
-    TURKISH("Turkish"),
-    KOREAN("Korean"),
-    FASTFOOD("FastFood");
-
-    private final String displayName;
-
-    FoodType(String displayName) {
-        this.displayName = displayName;
-    }
+    ITALIAN,
+    CHINESE,
+    MEXICAN,
+    JAPANESE,
+    INDIAN,
+    AMERICAN,
+    FRENCH,
+    THAI,
+    POLISH,
+    GREEK,
+    SPANISH,
+    TURKISH,
+    KOREAN,
+    FASTFOOD;
 }
