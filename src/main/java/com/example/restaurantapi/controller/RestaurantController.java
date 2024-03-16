@@ -49,9 +49,3 @@ public class RestaurantController {
 
 
 }
-
-//  @PostMapping("/add")
-//  public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody Restaurant request){
-//      Restaurant restaurant = restaurantService.findOrCreateRestaurant(request.getRestaurantName());
-//      return new ResponseEntity<>(restaurant, HttpStatus.CREATED);
-//  }

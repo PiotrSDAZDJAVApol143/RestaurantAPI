@@ -24,5 +24,7 @@ public class RestaurantTable {
     private Integer tableNumber;
     @Column(name = "CAPACITY_OF_TABLE",nullable = false)
     private Integer capacityOfTable;
+    @Column(name = "RESERVATION")
+    private Boolean reservation;
 
 }

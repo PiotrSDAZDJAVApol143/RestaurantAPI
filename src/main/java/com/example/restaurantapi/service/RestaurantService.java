@@ -110,14 +110,3 @@ public class RestaurantService {
         restaurantRepository.deleteById(id);
     }
 }
-/* List<RestaurantTable> tables = requestDto.getTables();
-        if (tables != null && !tables.isEmpty()) {
-            for (int i = 0; i < tables.size(); i++) {
-                RestaurantTable table = tables.get(i);
-                table.setTableNumber(i + 1);
-                table.setRestaurant(restaurant);
-            }
-            restaurant.setTables(tables);
-        }
-
- */
