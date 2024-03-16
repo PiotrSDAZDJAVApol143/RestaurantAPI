@@ -1,5 +1,6 @@
 package com.example.restaurantapi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,6 +46,7 @@ public class Restaurant {
     private Set<FoodType> foodTypes = new HashSet<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @JsonManagedReference
     private List<RestaurantTable> tables = new ArrayList<>();
 
 }

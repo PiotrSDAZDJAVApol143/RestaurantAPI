@@ -20,7 +20,7 @@ public class RestaurantReqDto {
 
     private Long id;
     private String restaurantName;
-    private Address addressDto = new Address();
+    private Address addressDto;
     private LocalTime openingHours;
     private LocalTime closingHours;
     private List<ImageEntity> imagesFromRestaurant;

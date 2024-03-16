@@ -35,9 +35,9 @@ public class RestaurantController {
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @Valid @RequestBody Restaurant request) {
-        Restaurant updateRestaurant = restaurantService.updateRestaurant(id, request);
+    @PatchMapping("/{id}")
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @Valid @RequestBody RestaurantReqDto requestDto) {
+        Restaurant updateRestaurant = restaurantService.updateRestaurant(id, requestDto);
         return ResponseEntity.ok(updateRestaurant);
     }
 

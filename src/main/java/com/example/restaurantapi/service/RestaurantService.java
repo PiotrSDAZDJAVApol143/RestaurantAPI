@@ -90,17 +90,33 @@ public class RestaurantService {
                 .orElseThrow(() -> new EntityNotFoundException("Restaurant not found with id: " + id));
     }
 
-    public Restaurant updateRestaurant(Long id, Restaurant request) {
+    public Restaurant updateRestaurant(Long id, RestaurantReqDto requestDto) {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Restauration not found"));
-
-        restaurant.setRestaurantName(request.getRestaurantName());
-        restaurant.setImagesFromRestaurant(request.getImagesFromRestaurant());
-        restaurant.setAddress(request.getAddress());
-        restaurant.setTables(request.getTables());
-        restaurant.setOpeningHours(request.getOpeningHours());
-        restaurant.setClosingHours(request.getClosingHours());
-        restaurant.setFoodTypes(request.getFoodTypes());
+        if(requestDto.getRestaurantName() !=null){
+            restaurant.setRestaurantName(requestDto.getRestaurantName());
+        }
+        if(requestDto.getImagesFromRestaurant() !=null) {
+            restaurant.setImagesFromRestaurant(requestDto.getImagesFromRestaurant());
+        }
+        if(requestDto.getAddressDto() !=null){
+            restaurant.setAddress(requestDto.getAddressDto());
+        }
+        if(requestDto.getAddressDto() !=null){
+            restaurant.setAddress(requestDto.getAddressDto());
+        }
+        if(requestDto.getTables() !=null){
+            restaurant.setTables(requestDto.getTables());
+        }
+        if(requestDto.getOpeningHours() !=null){
+            restaurant.setOpeningHours(requestDto.getOpeningHours());
+        }
+        if(requestDto.getClosingHours() !=null){
+            restaurant.setClosingHours(requestDto.getClosingHours());
+        }
+        if(requestDto.getFoodTypes() !=null){
+            restaurant.setFoodTypes(requestDto.getFoodTypes());
+        }
         return restaurantRepository.save(restaurant);
     }
     public void deleteRestaurant(Long id) {
