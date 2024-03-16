@@ -5,11 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class RestaurantTableDTO {
+
+    private Long id;
+    private Long restaurantId;
 
     @NotNull(message = "Number of Tables in Restaurant is required")
     @Min(value = 1, message = "Table Number in Restaurant must be greater than 0")

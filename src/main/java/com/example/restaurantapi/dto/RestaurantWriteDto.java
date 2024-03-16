@@ -24,5 +24,5 @@ public class RestaurantWriteDto {
     private LocalTime closingHours;
     private List<ImageEntity> imagesFromRestaurant;
     private Set<FoodType> foodTypes;
-    private List<RestaurantTable> tables;
+    private List<RestaurantTableDTO> tables;
 }

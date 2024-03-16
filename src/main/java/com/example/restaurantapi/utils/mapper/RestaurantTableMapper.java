@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 
 public class RestaurantTableMapper {
-    public RestaurantTableDTO mapTableToDTO(RestaurantTable table) {
-        return RestaurantTableDTO.builder()
-                .tableNumber(table.getTableNumber())
-                .capacityPerTable(table.getCapacityOfTable())
-                .build();
-    }
+ //   public RestaurantTableDTO mapTableToDTO(RestaurantTable table) {
+ //       return RestaurantTableDTO.builder()
+ //               .tableNumber(table.getTableNumber())
+ //               .capacityPerTable(table.getCapacityOfTable())
+ //               .build();
+ //   }
 
 }
