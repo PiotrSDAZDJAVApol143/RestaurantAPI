@@ -49,4 +49,8 @@ public class Restaurant {
     @JsonManagedReference
     private List<RestaurantTable> tables = new ArrayList<>();
 
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Review> reviewList = new ArrayList<>();
+
 }

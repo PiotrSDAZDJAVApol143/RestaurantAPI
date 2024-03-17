@@ -25,4 +25,5 @@ public class RestaurantWriteDto {
     private List<ImageEntity> imagesFromRestaurant;
     private Set<FoodType> foodTypes;
     private List<RestaurantTableDTO> tables;
+    private List<ReviewDto> reviews;
 }

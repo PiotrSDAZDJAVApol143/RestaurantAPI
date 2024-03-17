@@ -2,8 +2,11 @@ package com.example.restaurantapi.controller;
 
 import com.example.restaurantapi.dto.RestaurantReqDto;
 import com.example.restaurantapi.dto.RestaurantWriteDto;
+import com.example.restaurantapi.dto.ReviewDto;
 import com.example.restaurantapi.model.Restaurant;
+import com.example.restaurantapi.model.Review;
 import com.example.restaurantapi.service.RestaurantService;
+import com.example.restaurantapi.service.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class RestaurantController {
     private final RestaurantService restaurantService;
+    private final ReviewService reviewService;
 
 
     @GetMapping("/{id}")
@@ -45,6 +49,12 @@ public class RestaurantController {
     public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/review/add")
+    public ResponseEntity<Review> createNewReview(@PathVariable Long id, @Valid @RequestBody ReviewDto reviewDto){
+        Review review =reviewService.createReview(id, reviewDto);
+        return new ResponseEntity<>(review, HttpStatus.CREATED);
     }
 
 

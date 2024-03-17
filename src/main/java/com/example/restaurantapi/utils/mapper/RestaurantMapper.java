@@ -46,7 +46,7 @@ public class RestaurantMapper {
         tableDTO.setRestaurantId(table.getRestaurant().getId()); // Pobierz id z obiektu Restaurant
         tableDTO.setTableNumber(table.getTableNumber());
         tableDTO.setCapacityPerTable(table.getCapacityOfTable());
-        tableDTO.setReservation(table.getReservation());
+        tableDTO.setReservationCheck(table.getReservationCheck());
         return tableDTO;
     }
 }

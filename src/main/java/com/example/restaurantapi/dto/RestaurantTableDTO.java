@@ -18,5 +18,5 @@ public class RestaurantTableDTO {
     @NotNull(message = "Capacity of Tables in Restaurant is required")
     @Min(value = 1, message = "Capacity of Tables in Restaurant must be greater than 0")
     private Integer capacityPerTable;
-    private Boolean reservation;
+    private Boolean reservationCheck;
 }

@@ -1,5 +1,14 @@
 databaseChangeLog:
   - changeSet:
+      id: 07_create_table_app_user
+      author: piotr
+      changes:
+        - sqlFile:
+            path: scripts/07_create_table_app_user.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
       id: 01_create_table_address
       author: piotr
       changes:
@@ -32,6 +41,24 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: scripts/04_create_table_image.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: 05_create_table_review
+      author: piotr
+      changes:
+        - sqlFile:
+            path: scripts/05_create_table_review.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: 06_create_table_reservation
+      author: piotr
+      changes:
+        - sqlFile:
+            path: scripts/06_create_table_reservation.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
