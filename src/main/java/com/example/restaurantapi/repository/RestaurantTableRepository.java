@@ -11,4 +11,7 @@ public interface RestaurantTableRepository extends JpaRepository<RestaurantTable
 
     @Query("SELECT MAX(rt.tableNumber) FROM RestaurantTable rt WHERE rt.restaurant.id = :restaurantId")
     Integer findMaxTableNumberByRestaurantId(@Param("restaurantId") Long restaurantId);
+
+    @Query("SELECT rt FROM RestaurantTable rt WHERE rt.restaurant.id = :restaurantId AND rt.tableNumber = :tableNumber")
+    RestaurantTable findByRestaurantIdAndTableNumber(@Param("restaurantId") Long restaurantId, @Param("tableNumber") Integer tableNumber);
 }

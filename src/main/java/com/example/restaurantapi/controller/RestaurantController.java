@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,6 @@ public class RestaurantController {
         RestaurantWriteDto restaurant = restaurantService.findById(id);
         return ResponseEntity.ok(restaurant);
     }
-
 
 
     @PostMapping("/add")
@@ -52,8 +52,8 @@ public class RestaurantController {
     }
 
     @PostMapping("/{id}/review/add")
-    public ResponseEntity<Review> createNewReview(@PathVariable Long id, @Valid @RequestBody ReviewDto reviewDto){
-        Review review =reviewService.createReview(id, reviewDto);
+    public ResponseEntity<Review> createNewReview(@PathVariable Long id, @Valid @RequestBody ReviewDto reviewDto) {
+        Review review = reviewService.createReview(id, reviewDto);
         return new ResponseEntity<>(review, HttpStatus.CREATED);
     }
 

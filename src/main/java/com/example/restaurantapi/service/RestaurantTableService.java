@@ -7,6 +7,8 @@ import com.example.restaurantapi.repository.RestaurantRepository;
 import com.example.restaurantapi.repository.RestaurantTableRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -65,13 +67,8 @@ public class RestaurantTableService {
 
         return restaurantTable;
     }
+
+    public RestaurantTable findTableByRestaurantIdAndTableNumber(Long restaurantId, Integer tableNumber) {
+        return restaurantTableRepository.findByRestaurantIdAndTableNumber(restaurantId, tableNumber);
+    }
 }
-//   public RestaurantTable updateCapacityOfTableById(Long restaurantId, Long tableId, Integer capacityOfTable) {
-//       RestaurantTable restaurantTable = restaurantTableRepository.findById(tableId)
-//               .orElseThrow(() -> new EntityNotFoundException("Table with id " + tableId + " not found"));
-//       if (!restaurantTable.getRestaurant().getId().equals(restaurantId)) {
-//           throw new IllegalArgumentException("Table with id " + tableId + " does not belong to restaurant with id " + restaurantId);
-//       }
-//       restaurantTable.setCapacityOfTable(capacityOfTable);
-//       return restaurantTableRepository.save(restaurantTable);
-//   }
