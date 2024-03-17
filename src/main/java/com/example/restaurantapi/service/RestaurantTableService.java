@@ -50,6 +50,21 @@ public class RestaurantTableService {
         }
         return updatedTables;
     }
+
+    public RestaurantTable buildTable(RestaurantTableDTO request) {
+        RestaurantTable restaurantTable = new RestaurantTable();
+        Restaurant restaurant = restaurantService.findRestaurantTableById(request.getRestaurantId());
+        restaurantTable.setRestaurant(restaurant);
+        restaurantTable.setCapacityOfTable(request.getCapacityPerTable());
+        restaurantTable.setReservationCheck(request.getReservationCheck());
+        Integer maxTableNumber = restaurantTableRepository.findMaxTableNumberByRestaurantId(request.getRestaurantId());
+        if (maxTableNumber == null) {
+            maxTableNumber = 1;
+        }
+        restaurantTable.setTableNumber(maxTableNumber + 1);
+
+        return restaurantTable;
+    }
 }
 //   public RestaurantTable updateCapacityOfTableById(Long restaurantId, Long tableId, Integer capacityOfTable) {
 //       RestaurantTable restaurantTable = restaurantTableRepository.findById(tableId)

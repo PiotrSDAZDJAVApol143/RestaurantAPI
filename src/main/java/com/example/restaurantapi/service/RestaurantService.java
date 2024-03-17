@@ -23,12 +23,6 @@ public class RestaurantService {
     private final RestaurantMapper restaurantMapper;
 
 
-    public Restaurant createRestaurant(String restaurantName) {
-        Restaurant newRestaurant = new Restaurant();
-        newRestaurant.setRestaurantName(restaurantName);
-        return restaurantRepository.save(newRestaurant);
-    }
-
     public Restaurant buildRestaurant(RestaurantReqDto requestDto) {
         Address address = buildAddress(requestDto.getAddressDto());
 

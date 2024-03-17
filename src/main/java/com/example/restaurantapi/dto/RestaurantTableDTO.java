@@ -11,8 +11,6 @@ public class RestaurantTableDTO {
 
     private Long id;
     private Long restaurantId;
-
-    @NotNull(message = "Number of Tables in Restaurant is required")
     @Min(value = 1, message = "Table Number in Restaurant must be greater than 0")
     private Integer tableNumber;
     @NotNull(message = "Capacity of Tables in Restaurant is required")
